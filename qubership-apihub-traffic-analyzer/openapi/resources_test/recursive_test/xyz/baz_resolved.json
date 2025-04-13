@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "hello": {
+      "$ref": "#/definitions/World"
+    },
+    "new": {
+      "$ref": "#/definitions/New"
+    }
+  },
+  "definitions": {
+    "World": {
+      "type": "string"
+    },
+    "New": {
+      "$ref": "#/definitions/foo"
+    },
+    "foo": {
+      "type": "object",
+      "properties": {
+        "hello": {
+          "type": "string"
+        },
+        "new": {
+          "$ref": "#/definitions/New"
+        },
+        "baz": {
+          "$ref": "#"
+        }
+      }
+    }
+  }
+}

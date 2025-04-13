@@ -1,0 +1,1 @@
+bundle all external refs in single document
