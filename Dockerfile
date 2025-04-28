@@ -50,7 +50,7 @@ RUN apk --no-cache add \
 WORKDIR /app/qubership-apihub-traffic-analyzer
 
 COPY --from=builder /workspace/qubership-apihub-traffic-analyzer/qubership-apihub-traffic-analyzer ./qubership-apihub-traffic-analyzer
-COPY --from=builder /workspace/qubership-apihub-traffic-analyzer/config.yaml ./config.yaml
+ADD ./qubership-apihub-traffic-analyzer/resources ./resources
 
 RUN chmod -R a+rwx /app
 
