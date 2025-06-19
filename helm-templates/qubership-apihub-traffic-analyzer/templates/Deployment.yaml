@@ -1,0 +1,163 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+    name: 'qubership-apihub-traffic-analyzer'
+    labels:
+      name: 'qubership-apihub-traffic-analyzer'
+      app.kubernetes.io/name: 'qubership-apihub-traffic-analyzer'
+
+      app.kubernetes.io/version: 'qubership-apihub-traffic-analyzer'
+      app.kubernetes.io/component: 'backend'
+      app.kubernetes.io/part-of: 'qubership-apihub-traffic-analyzer'
+      app.kubernetes.io/managed-by: 'helm'
+      app.kubernetes.io/technology: 'go'
+spec:
+    replicas: {{ .Values.qubershipApihubTrafficAnalyzer.spec.replicas }}
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+    template:
+      metadata:
+        labels:
+          name: 'qubership-apihub-traffic-analyzer'
+          app.kubernetes.io/name: 'qubership-apihub-traffic-analyzer'
+
+          app.kubernetes.io/version: 'qubership-apihub-traffic-analyzer'
+          app.kubernetes.io/component: 'backend'
+          app.kubernetes.io/part-of: 'qubership-apihub-traffic-analyzer'
+          app.kubernetes.io/managed-by: 'helm'
+          app.kubernetes.io/technology: 'go'
+      spec:
+        serviceAccountName: 'qubership-apihub-traffic-analyzer'
+        containers:
+        - name: 'qubership-apihub-traffic-analyzer'
+          image: '{{ .Values.qubershipApihubTrafficAnalyzer.image.repository }}:{{ .Values.qubershipApihubTrafficAnalyzer.image.tag }}'
+          ports:
+          - name: web
+            containerPort: 8080
+            protocol: TCP
+          env:
+          - name: LISTEN_ADDRESS
+            value: ':8080'
+          - name: PRODUCTION_MODE
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.productionMode }}'
+          - name: LOG_LEVEL
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.logLevel }}'
+          - name: ARTIFACT_DESCRIPTOR_VERSION
+            value: 'qubership-apihub-traffic-analyzer'
+          - name: APIHUB_URL
+            value: '{{ .Values.qubershipApihub.url }}'
+          - name: APIHUB_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-secret'
+                key: apihub_access_token
+          - name: TRAFFIC_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-secret'
+                key: api_key
+          - name: API_HUB_AGENT
+            value: 'not_required'
+          - name: DB_TYPE
+            value: 'postgres'
+          - name: APIHUB_POSTGRESQL_PORT
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.database.dbPort }}'
+          - name: APIHUB_POSTGRESQL_HOST
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.database.dbHost }}'
+          - name: APIHUB_TRAFFIC_POSTGRESQL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-db-secret'
+                key: pg_user
+          - name: APIHUB_TRAFFIC_POSTGRESQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-db-secret'
+                key: pg_password
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: ORIGIN_ALLOWED
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.originAllowed }}'
+          - name: WORKSPACE
+            value: 'QS'
+          - name: WORK_DIR
+            value: '/tmp'
+          - name: APIHUB_TRAFFIC_POSTGRESQL_DB
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.database.dbName }}'
+          - name: INSECURE_PROXY
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.insecureProxy }}'
+          - name: MONITORING_ENABLED
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.monitoringEnabled }}'
+          - name: STORAGE_SERVER_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_access_key_id
+          - name: STORAGE_SERVER_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_secret_access_key
+          - name: STORAGE_SERVER_CRT
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_crt
+          - name: STORAGE_SERVER_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_endpoint
+          - name: STORAGE_SERVER_BUCKET_NAME
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_bucket_name
+          - name: MINIO_STORAGE_ACTIVE
+            valueFrom:
+              secretKeyRef:
+                name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
+                key: s3storage_active
+          resources:
+            requests:
+              cpu: {{ .Values.qubershipApihubTrafficAnalyzer.resource.cpu.request }}
+              memory: '{{ .Values.qubershipApihubTrafficAnalyzer.resource.memory.request }}'
+            limits:
+              cpu: {{ .Values.qubershipApihubTrafficAnalyzer.resource.cpu.limit }}
+              memory: '{{ .Values.qubershipApihubTrafficAnalyzer.resource.memory.limit }}'
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: web
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 20
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: web
+            initialDelaySeconds: 5
+            periodSeconds: 50
+            timeoutSeconds: 20
+          securityContext:
+            runAsUser: 10001
+            runAsGroup: 10001
+            readOnlyRootFilesystem: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+    selector:
+      matchLabels:
+        name: 'qubership-apihub-traffic-analyzer'
+
