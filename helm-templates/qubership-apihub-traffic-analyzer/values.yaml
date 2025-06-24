@@ -1,10 +1,8 @@
 s3storage:
-    username: 'Rdnx9KZpPpzPxwurEhSh'
-    password: 'ejGNYm5px7rI1SaQw0EwPSLkPvVM6cb6Vl1ffoip'
+    username: ''
+    password: ''
 #   public.crt | base64
-    crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNtRENDQWoyZ0F3SUJBZ0lSQUs2ZFhZUzgwZGhWc2VuL1BpeDJtN1l3Q2dZSUtvWkl6ajBFQXdJd0l6RWgKTUI4R0ExVUVBd3dZYXpOekxYTmxjblpsY2kxallVQXhOelE0TlRBMk1EWXpNQjRYRFRJMU1EWXhPREUyTVRndwpPVm9YRFRJMk1EWXhPREUyTVRnd09Wb3dXVEVWTUJNR0ExVUVDaE1NYzNsemRHVnRPbTV2WkdWek1VQXdQZ1lEClZRUURERGR6ZVhOMFpXMDZibTlrWlRvcUxtMTViV2x1YVc4dGFHd3ViV2x1YVc4dGRHVnVZVzUwTG5OMll5NWoKYkhWemRHVnlMbXh2WTJGc01Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRWwrMFNsSUVhbSs0bQp2Y016enVFQWlRUStzT2Y5bkpIbnlUTmlKSTNlRjR0ZXRYaEVHSFd5NlprUEdFVE9LbSs2UXRxV2NJV2ZHWTh4CkluTll6ZGcvOHFPQ0FSb3dnZ0VXTUE0R0ExVWREd0VCL3dRRUF3SUZvREFUQmdOVkhTVUVEREFLQmdnckJnRUYKQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUI4R0ExVWRJd1FZTUJhQUZKMWZsTVRQb2RaYmpNU3MwWmt4SU5NSAo5bGZ3TUlHL0JnTlZIUkVFZ2Jjd2diU0NPbTE1YldsdWFXOHRjRzl2YkMwd0xUQXViWGx0YVc1cGJ5MW9iQzV0CmFXNXBieTEwWlc1aGJuUXVjM1pqTG1Oc2RYTjBaWEl1Ykc5allXeUNKRzFwYm1sdkxtMXBibWx2TFhSbGJtRnUKZEM1emRtTXVZMngxYzNSbGNpNXNiMk5oYklJU2JXbHVhVzh1YldsdWFXOHRkR1Z1WVc1MGdoWnRhVzVwYnk1dAphVzVwYnkxMFpXNWhiblF1YzNaamdnSXFMb0lnS2k1dGFXNXBieTEwWlc1aGJuUXVjM1pqTG1Oc2RYTjBaWEl1CmJHOWpZV3d3Q2dZSUtvWkl6ajBFQXdJRFNRQXdSZ0loQU40R3NFUEx0R3pvclFKTnN4dUl0NUtRUjI1N05XRm0KZkEzT2xwNjA5dU8yQWlFQThBbHdCcngwSzRFS3AvaWtMYU1ab240MnVyK2ZYTXd6d1pESHVoZnJqajg9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K    
-#   public.crt | base64 | base64
-#   crt: TFMwdExTMUNSVWRKVGlCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2sxSlNVTnRSRU5EUVdveVowRjNTVUpCWjBsU1FVczJaRmhaVXpnd1pHaFdjMlZ1TDFCcGVESnROMWwzUTJkWlNVdHZXa2w2YWpCRlFYZEpkMGw2UldnS1RVSTRSMEV4VlVWQmQzZFpZWHBPZWt4WVRteGpibHBzWTJreGFsbFZRWGhPZWxFMFRsUkJNazFFV1hwTlFqUllSRlJKTVUxRVdYaFBSRVV5VFZSbmR3cFBWbTlZUkZSSk1rMUVXWGhQUkVVeVRWUm5kMDlXYjNkWFZFVldUVUpOUjBFeFZVVkRhRTFOWXpOc2VtUkhWblJQYlRWMldrZFdlazFWUVhkUVoxbEVDbFpSVVVSRVJHUjZaVmhPTUZwWE1EWmliVGxyV2xSdmNVeHRNVFZpVjJ4MVlWYzRkR0ZIZDNWaVYyeDFZVmM0ZEdSSFZuVlpWelV3VEc1T01sbDVOV29LWWtoV2VtUkhWbmxNYlhoMldUSkdjMDFHYTNkRmQxbElTMjlhU1hwcU1FTkJVVmxKUzI5YVNYcHFNRVJCVVdORVVXZEJSV3dyTUZOc1NVVmhiU3MwYlFwMlkwMTZlblZGUVdsUlVTdHpUMlk1YmtwSWJubFVUbWxLU1RObFJqUjBaWFJZYUVWSFNGZDVObHByVUVkRlZFOUxiU3MyVVhSeFYyTkpWMlpIV1RoNENrbHVUbGw2Wkdjdk9IRlBRMEZTYjNkblowVlhUVUUwUjBFeFZXUkVkMFZDTDNkUlJVRjNTVVp2UkVGVVFtZE9Wa2hUVlVWRVJFRkxRbWRuY2tKblJVWUtRbEZqUkVGVVFVMUNaMDVXU0ZKTlFrRm1PRVZCYWtGQlRVSTRSMEV4VldSSmQxRlpUVUpoUVVaS01XWnNUVlJRYjJSYVltcE5VM013V210NFNVNU5TQW81YkdaM1RVbEhMMEpuVGxaSVVrVkZaMkpqZDJkaVUwTlBiVEUxWWxkc2RXRlhPSFJqUnpsMllrTXdkMHhVUVhWaVdHeDBZVmMxY0dKNU1XOWlRelYwQ21GWE5YQmllVEV3V2xjMWFHSnVVWFZqTTFwcVRHMU9jMlJZVGpCYVdFbDFZa2M1YWxsWGVVTktSekZ3WW0xc2RreHRNWEJpYld4MlRGaFNiR0p0Um5VS1pFTTFlbVJ0VFhWWk1uZ3hZek5TYkdOcE5YTmlNazVvWWtsSlUySlhiSFZoVnpoMVlsZHNkV0ZYT0hSa1IxWjFXVmMxTUdkb1duUmhWelZ3WW5rMWRBcGhWelZ3WW5reE1GcFhOV2hpYmxGMVl6TmFhbWRuU1hGTWIwbG5TMmsxZEdGWE5YQmllVEV3V2xjMWFHSnVVWFZqTTFwcVRHMU9jMlJZVGpCYVdFbDFDbUpIT1dwWlYzZDNRMmRaU1V0dldrbDZhakJGUVhkSlJGTlJRWGRTWjBsb1FVNDBSM05GVUV4MFIzcHZjbEZLVG5ONGRVbDBOVXRSVWpJMU4wNVhSbTBLWmtFelQyeHdOakE1ZFU4eVFXbEZRVGhCYkhkQ2NuZ3dTelJGUzNBdmFXdE1ZVTFhYjI0ME1uVnlLMlpZVFhkNmQxcEVTSFZvWm5KcWFqZzlDaTB0TFMwdFJVNUVJRU5GVWxSSlJrbERRVlJGTFMwdExTMEs= 
+    crt: ''
     url: 'minio.minio-tenant'
     bucketName: 'qubership-apihub-sniffer-s3-bucket'
     active: 'true'
@@ -13,7 +11,7 @@ s3storage:
 
 qubershipApihub:
   url: 'qubership-apihub-backend.qubership-apihub.svc.cluster.local' 
-  accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Im5MR3R3dDhtQ2RuX3lab1F3YUhDZjVuT1ZrdUhjSngydUhyRmc2NUloeXcifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJxdWJlcnNoaXAtYXBpaHViIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InF1YmVyc2hpcC1hcGlodWItYmFja2VuZC1zZWNyZXQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoicXViZXJzaGlwLWFwaWh1Yi1iYWNrZW5kIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiM2E2OTI1ODMtMTM3ZC00YmUzLTg5MDAtMDYxMTMxYzU4N2I3Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OnF1YmVyc2hpcC1hcGlodWI6cXViZXJzaGlwLWFwaWh1Yi1iYWNrZW5kIn0.V0yO4BeMneTExmrgG0wC0ArKH_ddbetb6YSojwnVp1mbMeZ9FrF0Usmqv9VSvPP4IWf-wEw6SycljbALZkB2sjhvmNziINdfpNFzqh_BnUHIpC5i8FFXMBsN4djwiKE0gB9xoW8kBZdWRRkJKUtq0ln_OwUdkYVEz7UFB4WvXcctqqDkYXQxzYrl8ZgZ5wmTcLBwq1SdPMS5LzKGlN1UCjT9jb4vqimA2l9b9opTQuw4-r2xvwPWMqcUp_3gGqmz31Qhcpv9Cb1dGbJhstVHIk8ZSBcNVYFafTrZbtKdLzxElWeQy014YyiHqJ5TpvA03_9tJdgfOp7AH38xmG7aAQ'
+  accessToken: ''
   
 qubershipApihubTrafficAnalyzer:
   apiKey: ''
@@ -22,9 +20,6 @@ qubershipApihubTrafficAnalyzer:
     repository: 'ghcr.io/netcracker/qubership-apihub-traffic-analyzer' 
     tag: 'dev'
 
-  # Section with resource limits
-  # Mandatory
-  # Below are the default values which are good enough for any cases including production
   resource:
     memory:  
       request: "512Mi"
@@ -33,72 +28,19 @@ qubershipApihubTrafficAnalyzer:
       request: "100m"
       limit: "1"
 
-#IMAGE_REPOSITORY: ""#TO_BE_SET
-#TAG: ""#TO_BE_SET
-#ARTIFACT_DESCRIPTOR_VERSION: ""#TO_BE_SET
-
-
-#MEMORY_LIMIT: "512Mi"
-#CPU_REQUEST: "100m"
-#CPU_LIMIT: "1"
-#APIHUB_REPLICAS: 1
-
   spec:
    replicas: 1
-
-
-#CLOUD_TOPOLOGY_KEY: kubernetes.io/hostname
-
-#SERVICE: "apihub-traffic-analyzer"
-#SERVICE_NAME: "apihub-traffic-analyzer"
-#DEPLOYMENT_RESOURCE_NAME: "apihub-traffic-analyzer"
-#PART_OF: 'APIHUB'
-#DELIMITER: '-'
-
-#SERVICE_ACCOUNT: "apihub-traffic-analyzer"
-###  ??????  SERVICE_ACCOUNT_APIHUB_SECRET_NAME: "apihub-traffic-analyzer-secret"
-
-
-#NAMESPACE: '' #TO_BE_SET
-#WORKSPACE: 'NC'
 
   env:
     monitoringEnabled: false
     insecureProxy: true
     originAllowed: ''
-#    qubershipApihubAgent: ''
     logLevel: "DEBUG"
     productionMode: false
-#LOG_LEVEL: "INFO"
-#PRODUCTION_MODE: false
-
-#DB_TYPE: "postgres"
     database:
-      dbHost: "postgres"
-      dbPort: "5432"
-      dbName: 'postgres'
-      dbUsername: 'postgres'
-      dbPassword: 'postgres'
-    
-#APIHUB_POSTGRESQL_HOST: "pg-patroni.apihub-postgresql-nonprod"
-#APIHUB_POSTGRESQL_PORT: "5432"
-#APIHUB_TRAFFIC_POSTGRESQL_DB: 'api_hub_traffic'
-#APIHUB_TRAFFIC_POSTGRESQL_USERNAME: 'api_hub_dev_traffic'
-#APIHUB_TRAFFIC_POSTGRESQL_PASSWORD: 'api_hub_dev_traffic'
-#APIHUB_URL: 'https://dev.apihub.netcracker.com'
-#APIHUB_ACCESS_TOKEN: '' #TO_BE_SET
-#TRAFFIC_API_KEY: '' #TO_BE_SET
+      dbHost: 'pg-common.postgres-db.svc.cluster.local'
+      dbPort: '5432'
+      dbName: ''
+      dbUsername: ''
+      dbPassword: ''
 
-#ORIGIN_ALLOWED: '' #TO_BE_SET
-#INSECURE_PROXY: true
-#MONITORING_ENABLED: false
-
-#STORAGE_SERVER_ACCESS_KEY_ID: ''
-#STORAGE_SERVER_SECRET_ACCESS_KEY: ''
-#STORAGE_SERVER_CRT: ''
-#STORAGE_SERVER_ENDPOINT: ''
-#STORAGE_SERVER_BUCKET_NAME: ''
-#MINIO_STORAGE_ACTIVE: false
-
-
-#MANAGED_BY: 'saasDeployer'
