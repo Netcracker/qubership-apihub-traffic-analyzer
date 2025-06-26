@@ -49,7 +49,7 @@ spec:
           - name: ARTIFACT_DESCRIPTOR_VERSION
             value: 'qubership-apihub-traffic-analyzer'
           - name: APIHUB_URL
-            value: '{{ .Values.qubershipApihub.url }}'
+            value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.qubershipApihub.url }}'
           - name: APIHUB_ACCESS_TOKEN
             valueFrom:
               secretKeyRef:
@@ -98,32 +98,32 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_access_key_id
+                key: storage_server_access_key_id
           - name: STORAGE_SERVER_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_secret_access_key
+                key: storage_server_secret_access_key
           - name: STORAGE_SERVER_CRT
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_crt
+                key: storage_server_crt
           - name: STORAGE_SERVER_ENDPOINT
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_endpoint
+                key: storage_server_endpoint
           - name: STORAGE_SERVER_BUCKET_NAME
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_bucket_name
+                key: storage_server_bucket_name
           - name: MINIO_STORAGE_ACTIVE
             valueFrom:
               secretKeyRef:
                 name: 'qubership-apihub-traffic-analyzer-s3storage-secret'
-                key: s3storage_active
+                key: minio_storage_active
           resources:
             requests:
               cpu: {{ .Values.qubershipApihubTrafficAnalyzer.resource.cpu.request }}

@@ -19,13 +19,13 @@ qubershipApihubTrafficAnalyzer:
     logLevel: "DEBUG"
     productionMode: false
     database:
-      dbHost: ''
-      dbPort: ''
-      dbName: ''
-      dbUsername: ''
-      dbPassword: ''
+      dbHost: 'pg-common.postgres-db.svc.cluster.local'
+      dbPort: '5432'
+      dbName: 'traffic_analyzer'
+      dbUsername: 'traffic_analyzer'
+      dbPassword: 'traffic_analyzer'
     qubershipApihub:
-      url: '' 
+      url: 'qubership-apihub-backend.qubership-apihub.svc.cluster.local' 
       accessToken: ''
     s3storage:
       username: ''
