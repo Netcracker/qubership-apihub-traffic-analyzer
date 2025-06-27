@@ -75,10 +75,19 @@ func init() {
 	if basePath == "" {
 		basePath = "."
 	}
-	mw := io.MultiWriter(os.Stderr, &lumberjack.Logger{
-		Filename: basePath + "/logs/traffic-analyzer.log",
-		MaxSize:  10, // megabytes
-	})
+	logFilePath := os.Getenv("LOG_FILE_PATH") //Example: /logs/apihub.log
+	var mw io.Writer
+	if logFilePath != "" {
+		mw = io.MultiWriter(
+			os.Stdout,
+			&lumberjack.Logger{
+				Filename: logFilePath,
+				MaxSize:  10, // megabytes
+			},
+		)
+	} else {
+		mw = os.Stdout
+	}
 	// log formatter
 	//log.SetFormatter(&prefixed.TextFormatter{
 	//	DisableColors:   true,
