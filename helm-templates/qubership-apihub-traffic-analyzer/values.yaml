@@ -1,7 +1,11 @@
+# Section with APIHUB TRAFFIC ANALYZER configuration
 qubershipApihubTrafficAnalyzer:
   image:
     repository: 'ghcr.io/netcracker/qubership-apihub-traffic-analyzer' 
     tag: 'dev'
+  # Section with resource limits
+  # Mandatory
+  # Below are the default values which are good enough for quick start, sandbox and over non production cases
   resource:
     memory:  
       request: "512Mi"
@@ -9,30 +13,53 @@ qubershipApihubTrafficAnalyzer:
     cpu:  
       request: "100m"
       limit: "1"
+  # Optional; Set log level on init to specified value. Values: Info, Warn, Error, etc; If not set, default value: INFO; Example: DEBUG
+  logLevel: "INFO"
   spec:
    replicas: 1
+  #??? Optional; Enables creation of Service Monitor. If not set, default value: FALSE; Example: TRUE
+  monitoring:
+    enabled: false
+  # Section with enviroment parameters for APIHUB TRAFFIC ANALYZER
   env:
-    snifferApiKey: ''
-    monitoringEnabled: false
-    insecureProxy: true
-    originAllowed: ''
-    logLevel: "DEBUG"
+    #??? Optional; Enables production mode; Example: TRUE
     productionMode: false
+    #??? Mandatory;  Access key to APIHUB SNIFFER integration; Example: LS0tLS1CRUdJTiBQUklWQV...
+    snifferApiKey: ''
+    #??? Optional; Set to true to enable apihub playground work without authtorization. Dangerous. Not recommended; If not set, default value: FALSE; Example: FALSE
+    insecureProxy: false
+    #??? Optional; Allows to set extra allowed origin to CORS header. Used for FE debugging. Should be empty on prod evs.; If not set, default value: ""; Example: https://localhost:5137
+    originAllowed: ''
+    # Section with PostgreSQL database connection parameters
     database:
+      # Mandatory; PostgreSQL database host ; Example: postgres.example.com
       dbHost: ''
+      # Mandatory; PostgreSQL database port;  Example: 5432
       dbPort: ''
+      # Mandatory; Logical database in PostgreSQL cluster for APIHUB TRAFFIC ANALYZER. Manual pre-creation required; Example: traffic_analyzer
       dbName: ''
+      # Mandatory; User for APIHUB TRAFFIC ANALYZER dbName database; Example: traffic_analyzer
       dbUsername: ''
+      # Mandatory; Password for dbUsername user; Example: traffic_analyzer
       dbPassword: ''
+    # Section with APIHUB integration parameters
     qubershipApihub:
+      # Mandatory; URL to integration with APIHUB UI; Example: http://apihub.example.com
       url: '' 
+      # Mandatory; Access token for APIHUB integration; Example: LS0tLS1CRUdJTiBQUklWQV...
       accessToken: ''
+    # Section with S3 storage integration parameters.
     s3storage:
+      # Mandatory; Access Key ID from S3 storage; Example: s3-access-key
       username: ''
+      # Mandatory; Secret key for S3 storage access; Example: s3-secret-key
       password: ''
-    # public.crt | base64
+      # Mandatory; Certificate for accessing S3 storage; Example: LS0tLS1CRUdJTiBQUklWQV...
       crt: ''
-      url: 'minio.minio-tenant'
-      bucketName: 'qubership-apihub-sniffer-s3-bucket'
+      # Mandatory; S3 endpoint for client connection; Example: s3.example.com
+      url: ''
+      # Mandatory; Bucket name in S3 storage; Example: apihub-sniffer-s3-bucket
+      bucketName: ''
+      # Mandatory; Set to true to enable S3 integration. S3 is used for store temporary relatively large files.; Example: TRUE
       active: 'true'
 
