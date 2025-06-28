@@ -88,8 +88,6 @@ spec:
             value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.database.dbName }}'
           - name: INSECURE_PROXY
             value: '{{ .Values.qubershipApihubTrafficAnalyzer.env.insecureProxy }}'
-          - name: MONITORING_ENABLED
-            value: '{{ .Values.qubershipApihubTrafficAnalyzer.monitoring.enabled }}'
           - name: STORAGE_SERVER_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:

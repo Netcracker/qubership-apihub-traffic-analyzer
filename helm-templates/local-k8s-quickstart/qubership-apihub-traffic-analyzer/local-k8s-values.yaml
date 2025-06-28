@@ -10,14 +10,10 @@ qubershipApihubTrafficAnalyzer:
       request: "100m"
       limit: "1"
   logLevel: "DEBUG"
-  spec:
-   replicas: 1
-  monitoring:
-    enabled: false
+  analyzerUrl: 'qubership-apihub-traffic-analyzer.localtest.me'
   env:
     productionMode: false
     snifferApiKey: ''  # Will be filled by the installation script
-    insecureProxy: false
     originAllowed: ''
     database:
       dbHost: 'pg-common.postgres-db.svc.cluster.local'

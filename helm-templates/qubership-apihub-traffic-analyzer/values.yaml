@@ -1,4 +1,4 @@
-# Section with APIHUB TRAFFIC ANALYZER configuration
+# Section with Qubership APIHUB Traffic Analyzer configuration
 qubershipApihubTrafficAnalyzer:
   image:
     repository: 'ghcr.io/netcracker/qubership-apihub-traffic-analyzer' 
@@ -16,19 +16,16 @@ qubershipApihubTrafficAnalyzer:
   # Optional; Set log level on init to specified value. Values: Info, Warn, Error, etc; If not set, default value: INFO; Example: DEBUG
   logLevel: "INFO"
   spec:
-   replicas: 1
-  #??? Optional; Enables creation of Service Monitor. If not set, default value: FALSE; Example: TRUE
-  monitoring:
-    enabled: false
-  # Section with enviroment parameters for APIHUB TRAFFIC ANALYZER
+    replicas: 1
+  # Mandatory; Qubserhip APIHUB Traffic Analyzer server URL for Ingress; Example: apihub-traffic-analyzer.example.com
+  analyzerUrl: ''
+  # Section with enviroment parameters for Qubership APIHUB Traffic Analyzer
   env:
-    #??? Optional; Enables production mode; Example: TRUE
+    # Optional; Enables production mode; Example: TRUE
     productionMode: false
-    #??? Mandatory;  Access key to APIHUB SNIFFER integration; Example: LS0tLS1CRUdJTiBQUklWQV...
+    # Mandatory; API key Qubserhip APIHUB Sniffer Agent public API access. Any string; Example: xyz
     snifferApiKey: ''
-    #??? Optional; Set to true to enable apihub playground work without authtorization. Dangerous. Not recommended; If not set, default value: FALSE; Example: FALSE
-    insecureProxy: false
-    #??? Optional; Allows to set extra allowed origin to CORS header. Used for FE debugging. Should be empty on prod evs.; If not set, default value: ""; Example: https://localhost:5137
+    # Optional; Allows to set extra allowed origin to CORS header. Used for FE debugging. Should be empty on prod evs.; If not set, default value: ""; Example: https://localhost:5137
     originAllowed: ''
     # Section with PostgreSQL database connection parameters
     database:
@@ -36,9 +33,9 @@ qubershipApihubTrafficAnalyzer:
       dbHost: ''
       # Mandatory; PostgreSQL database port;  Example: 5432
       dbPort: ''
-      # Mandatory; Logical database in PostgreSQL cluster for APIHUB TRAFFIC ANALYZER. Manual pre-creation required; Example: traffic_analyzer
+      # Mandatory; Logical database in PostgreSQL cluster for Qubership APIHUB Traffic Analyzer. Manual pre-creation required; Example: traffic_analyzer
       dbName: ''
-      # Mandatory; User for APIHUB TRAFFIC ANALYZER dbName database; Example: traffic_analyzer
+      # Mandatory; User for Qubership APIHUB Traffic Analyzer dbName database; Example: traffic_analyzer
       dbUsername: ''
       # Mandatory; Password for dbUsername user; Example: traffic_analyzer
       dbPassword: ''
@@ -46,7 +43,7 @@ qubershipApihubTrafficAnalyzer:
     qubershipApihub:
       # Mandatory; URL to integration with APIHUB UI; Example: http://apihub.example.com
       url: '' 
-      # Mandatory; Access token for APIHUB integration; Example: LS0tLS1CRUdJTiBQUklWQV...
+      # Mandatory; Access token for APIHUB integration; Example: xyz
       accessToken: ''
     # Section with S3 storage integration parameters.
     s3storage:

@@ -13,7 +13,7 @@ metadata:
 spec:
     ingressClassName: nginx
     rules:
-        -   host: 'qubership-apihub-traffic-analyzer'
+        -   host: '{{ .Values.qubership-apihub-traffic-analyzer.analyzerUrl }}'
             http:
                 paths:
                     -   path: /
