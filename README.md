@@ -11,7 +11,7 @@ todo
 
 ## Installation
 
-todo: Helm
+Please refer to [Helm chart folder](./helm-templates/)
 
 
 ## Build

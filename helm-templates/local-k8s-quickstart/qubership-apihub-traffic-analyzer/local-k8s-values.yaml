@@ -1,0 +1,33 @@
+qubershipApihubTrafficAnalyzer:
+  image:
+    repository: 'ghcr.io/netcracker/qubership-apihub-traffic-analyzer' 
+    tag: 'dev'
+  resource:
+    memory:  
+      request: "512Mi"
+      limit: "512Mi"
+    cpu:  
+      request: "100m"
+      limit: "1"
+  logLevel: "DEBUG"
+  analyzerUrl: 'qubership-apihub-traffic-analyzer.localtest.me'
+  env:
+    productionMode: false
+    snifferApiKey: ''  # Will be filled by the installation script
+    originAllowed: ''
+    database:
+      dbHost: 'pg-common.postgres-db.svc.cluster.local'
+      dbPort: '5432'
+      dbName: 'traffic_analyzer'
+      dbUsername: 'traffic_analyzer'
+      dbPassword: 'traffic_analyzer'
+    qubershipApihub:
+      url: 'http://qubership-apihub-ui.qubership-apihub.svc.cluster.local:8080'
+      accessToken: ''  # Will be filled by the installation script
+    s3storage:
+      username: ''  # Will be filled by the installation script
+      password: ''  # Will be filled by the installation script
+      crt: ''  # Will be filled by the installation script
+      url: ''  # Will be filled by the installation script
+      bucketName: ''  # Will be filled by the installation script
+      active: 'true'
