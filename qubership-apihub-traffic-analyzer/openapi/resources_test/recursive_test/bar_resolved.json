@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "hello": {
+      "$ref": "#/definitions/World1"
+    },
+    "new": {
+      "$ref": "#/definitions/foo"
+    },
+    "world": {
+      "$ref": "#/definitions/World"
+    }
+  },
+  "definitions": {
+    "World": {
+      "type": "number"
+    },
+    "World1": {
+      "type": "string"
+    },
+    "baz": {
+      "type": "object",
+      "properties": {
+        "hello": {
+          "$ref": "#/definitions/World1"
+        },
+        "new": {
+          "$ref": "#/definitions/foo"
+        }
+      }
+    },
+    "foo": {
+      "type": "object",
+      "properties": {
+        "hello": {
+          "type": "string"
+        },
+        "new": {
+          "$ref": "#/definitions/foo"
+        },
+        "baz": {
+          "$ref": "#/definitions/baz"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,471 @@
+openapi: 3.0.3
+info:
+  title: APIHUB traffic analyser API
+  description: |
+    The API allows to process and report capture data
+servers:
+  - url: https://{service}{namespace}.qubership.com
+    description: APIHUB traffic analyser POD
+    variables:
+      service:
+        description: Name of the APIHUB traffic analyser cloud service
+        enum:
+          - apihub-traffic-analyzer
+        default: apihub-traffic-analyzer
+      namespace:
+        description: Namespace where APIHUB traffic analyser POD is running
+        enum:
+          - api-hub-dev
+          - api-hub
+        default: api-hub-dev
+
+
+security:
+  - api-key: [ ]
+tags:
+  - name: Traffic analysis
+    description: Operations to process captured network packets
+
+paths:
+  "/api/v1/admin/capture/{captureId}/load":
+    post:
+      tags:
+        - Load and parse capture data
+      summary: Opens capture network data and loads then to DB
+      description: Starts captured network packets aggregation
+      operationId: loadCapture
+      security:
+        - api-key: [ ]
+      parameters:
+        - in: path
+          name: captureId
+
+      responses:
+        "202":
+          description: Success
+          content:
+            text/plain:
+              schema:
+                description: Loading
+
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                InternalServerError:
+                  $ref: "#/components/examples/InternalServerError"
+
+  "/api/v1/admin/capture/{captureId}/status":
+    post:
+      tags:
+        - Returns load and parse capture data status
+      summary: Returns load and parse capture data status
+      description: Returns load and parse capture data status
+      operationId: loadCaptureStatus
+      security:
+        - api-key: [ ]
+      parameters:
+        - in: path
+          name: captureId
+
+      responses:
+        "200":
+          description: Completed successfully
+          content:
+            text/plain:
+              schema:
+                description: capture '%s' was loaded at %s
+        "201":
+          description: Still loading
+          content:
+            text/plain:
+              schema:
+                description: capture '%s' is still loading
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                IncorrectInputParams:
+                  $ref: "#/components/examples/IncorrectInputParameters"
+        "401":
+          description: Unauthorized (improper TRAFFIC_API_KEY)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "417":
+          description: Failed to load
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                InternalServerError:
+                  $ref: "#/components/examples/InternalServerError"
+  "/api/v1/admin/capture/{captureId}/delete":
+    post:
+      tags:
+        - delete, raw capture data, S3/Minio
+      summary: Deletes raw capture data from S3/Minio
+      description: Deletes raw capture data from S3/Minio
+      operationId: captureDataDelete
+      security:
+        - api-key: [ ]
+      parameters:
+        - in: path
+          name: captureId
+      responses:
+        "202":
+          description: Request accepted
+          content:
+            text/plain:
+              schema:
+                description: deleting
+        "206":
+          description: Capture was not completely loaded, please wait for load to complete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                IncorrectInputParams:
+                  $ref: "#/components/examples/IncorrectInputParameters"
+        "401":
+          description: Unauthorized (improper TRAFFIC_API_KEY)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                InternalServerError:
+                  $ref: "#/components/examples/InternalServerError"
+  "/api/v1/report/service/operations/generate":
+    post:
+      tags:
+        - Reports
+      summary: Generates data for service operation report
+      description: Generates data for service operation report
+      operationId: serviceOperationsReportGeneration
+      security:
+        - api-key: [ ]
+      requestBody:
+        description: Generation parameters
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                capture_id:
+                  type: string
+                  description: Capture identifier (mandatory parameter)
+                  format: uuid
+                service_name:
+                  type: string
+                  description: A name of the service (package).
+                service_version:
+                  type: string
+                  description: A version of the service (package).
+            examples: { }
+        required: true
+      responses:
+        "202":
+          description: Request accepted successfully
+          content:
+            application/json:
+              schema:
+                description: A report identifier
+                type: object
+                properties:
+                  report_id:
+                    description: A report identifier to retrieve report data
+                    type: string
+                    format: uuid
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                IncorrectInputParams:
+                  $ref: "#/components/examples/IncorrectInputParameters"
+        "401":
+          description: Unauthorized (improper TRAFFIC_API_KEY)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                InternalServerError:
+                  $ref: "#/components/examples/InternalServerError"
+
+  "/api/v1/report/service/operations/render":
+    get:
+      tags:
+        - Reports
+      summary: Retrieves the report data
+      description: Sends report data back
+      operationId: serviceOperationsReportRender
+      security:
+        - api-key: [ ]
+      requestBody:
+        description: Request parameters
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                report_id:
+                  type: string
+                  description: Report identifier (mandatory parameter)
+                  format: uuid
+                output_format:
+                  type: string
+                  description: A report output format
+                  enum: [ excel, json ]
+            examples: { }
+        required: true
+      responses:
+        "200":
+          description: Report data
+          content:
+            application/octet-stream:
+              schema:
+                description: An Excel (.xlsx) document
+            application/json:
+              schema:
+                description: An array of report rows
+                type: object
+                properties:
+                  parameters:
+                    type: object
+                    description: A report request parameters
+                    properties:
+                      report_uuid:
+                        type: string
+                        description: Report unique identifier
+                        format: uuid
+                      capture_id:
+                        type: string
+                        description: Capture unique identifier
+                        format: uuid
+                      service_name:
+                        type: string
+                        description: Service (package) name
+                      service_version:
+                        type: string
+                        description: Service (package) version
+                      version_status:
+                        type: string
+                        description: Service (package) version status
+                        enum: [ requested, recent ]
+                  data:
+                    type: array
+                    description: A report data rows array
+                    items:
+                      $ref: "#/components/schemas/ReportDataRow"
+
+
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                IncorrectInputParams:
+                  $ref: "#/components/examples/IncorrectInputParameters"
+        "401":
+          description: Unauthorized (improper TRAFFIC_API_KEY)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                InternalServerError:
+                  $ref: "#/components/examples/InternalServerError"
+
+  "/live":
+    get:
+      tags:
+        - Status report
+      summary: reports status to the cloud
+      description: reports status to the cloud to prove normal process functioning
+      operationId: live
+      responses:
+        "200":
+          description: Success
+        "401":
+          description: Unauthorized (improper TRAFFIC_API_KEY)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples: { }
+        "500":
+          description: Internal Server Error
+
+  "/ready":
+    get:
+      tags:
+        - Readiness report
+      summary: reports process readiness to the cloud
+      description: reports process readiness to the cloud to prove normal process functioning
+      operationId: ready
+      responses:
+        "200":
+          description: Success
+        "500":
+          description: Internal Server Error
+
+  "/startup":
+    get:
+      tags:
+        - Process startup result
+      summary: reports success process startup to the cloud
+      description: reports success process startup to the cloud to prove normal process functioning
+      operationId: startup
+      responses:
+        "200":
+          description: Success
+        "500":
+          description: Internal Server Error
+
+components:
+  schemas:
+    ErrorResponse:
+      description: An error description
+      type: object
+      properties:
+        status:
+          description: HTTP Status Code
+          type: number
+        code:
+          description: Internal string error code. Mandatory in response.
+          type: string
+        message:
+          description: The attribute contains an error message.
+          type: string
+        params:
+          type: object
+          description: Message parameters
+          example:
+            id: 12345
+            type: string
+        debug:
+          description: The attribute contains debug details (e.g. stack-trace). Presented in the error response only on Dev/Test environments if corresponding logging level is enabled.
+          type: string
+      required:
+        - status
+        - code
+        - message
+    ReportDataRow:
+      type: object
+      properties:
+        operation_path:
+          type: string
+          description: An operation request path
+        operation_method:
+          type: string
+          description: An operation method
+          enum: [ GET,HEAD,POST,PUT,PATCH,DELETE,CONNECT,OPTIONS,TRACE ]
+        operation_status:
+          type: string
+          description: An operation status against the captured packets dump
+          enum: [ Unspecified,Not captured,Captured ]
+        source_service:
+          type: string
+          description: The service issued the request, could be omitted when empty
+        destination_service:
+          type: string
+          description: The service served the request
+      required:
+        - operation_path
+        - operation_path
+        - operation_method
+        - operation_status
+        - destination_service
+  examples:
+    InternalServerError:
+      description: Default internal server error
+      value:
+        status: 500
+        code: "APIHUB-8000"
+        reason: "InternalServerError"
+        message: "InternalServerError"
+    IncorrectInputParameters:
+      description: Incorrect input parameters
+      value:
+        status: 400
+        code: "APIHUB-COMMON-4001"
+        message: "Incorrect input parameters"

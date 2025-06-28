@@ -1,0 +1,14 @@
+qubership-apihub-traffic-analyzer/.idea
+qubership-apihub-traffic-analyzer/go.sum
+.idea
+.vscode
+qubership-apihub-traffic-analyzer/data/**
+qubership-apihub-traffic-analyzer/static/**
+qubership-apihub-traffic-analyzer/logs/**
+qubership-apihub-traffic-analyzer/apihub-agent.exe
+qubership-apihub-traffic-analyzer/apihub-agent
+qubership-apihub-traffic-analyzer/bin/**
+
+*.bak
+*.iml
+*.orig
