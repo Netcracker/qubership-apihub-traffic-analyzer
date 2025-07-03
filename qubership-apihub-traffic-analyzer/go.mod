@@ -1,6 +1,6 @@
 module github.com/Netcracker/qubership-apihub-traffic-analyzer/qubership-apihub-traffic-analyzer
 
-go 1.22
+go 1.23.0
 
 require (
 	github.com/fatih/color v1.18.0
@@ -42,9 +42,9 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xuri/efp v0.0.0-20231025114914-d1ff6096ae53 // indirect
 	github.com/xuri/nfp v0.0.0-20230919160717-d98342af3f05 // indirect
-	golang.org/x/crypto v0.31.0 // indirect
+	golang.org/x/crypto v0.35.0 // indirect
 	golang.org/x/net v0.26.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 	mellium.im/sasl v0.3.1 // indirect
 )
