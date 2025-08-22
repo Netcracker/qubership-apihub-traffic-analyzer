@@ -9,7 +9,7 @@
 
 # Why a new library?
 
-As of this writing, there already exists a de facto standard library for YAML processing for Go: [https://github.com/openapi.yaml/yaml](https://github.com/go-yaml/yaml). However we feel that some features are lacking, namely:
+As of this writing, there already exists a de facto standard library for YAML processing for Go: `openapi.yaml/yaml`. However we feel that some features are lacking, namely:
 
 - Pretty format for error notifications
 - Direct manipulation of YAML abstract syntax tree
