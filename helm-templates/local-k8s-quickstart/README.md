@@ -11,7 +11,7 @@ Assumptions:
 
 1. local k8s cluter is set up, up and running, kubectl configured
 2. Postgres and APIHUB already installed to your k8s cluster. Refer to [corresponding guide](https://github.com/Netcracker/qubership-apihub/tree/main/helm-templates/local-k8s-quickstart)
-3. Minio and Sniffer Agent already installed to your k8s cluster. Refer to [corresponding guide](https://github.com/Netcracker/qubership-apihub-sniffer-agent/tree/helm/helm-templates/local-k8s-quickstart)
+3. Minio and Sniffer Agent already installed to your k8s cluster. Refer to [corresponding guide](https://github.com/Netcracker/qubership-apihub-sniffer-agent/tree/develop/helm-templates/local-k8s-quickstart)
 
 ## Deployment
 
