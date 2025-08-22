@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	github.com/fatih/color v1.18.0
-	github.com/go-pg/pg/v10 v10.14.0
+	github.com/go-pg/pg/v10 v10.15.0
 	github.com/google/gopacket v1.1.19
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/handlers v1.5.2
