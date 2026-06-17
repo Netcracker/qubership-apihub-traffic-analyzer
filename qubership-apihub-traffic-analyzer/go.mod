@@ -12,7 +12,7 @@ require (
 	github.com/minio/minio-go/v7 v7.0.97
 	github.com/shaj13/go-guardian/v2 v2.11.6
 	github.com/shaj13/libcache v1.2.1
-	github.com/sirupsen/logrus v1.9.3
+	github.com/sirupsen/logrus v1.9.4
 	github.com/xuri/excelize/v2 v2.8.1
 	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
